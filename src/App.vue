@@ -29,6 +29,13 @@
           </div>
         </div>
       </div>
+      <div v-else-if="query !== '' && typeof weather.main === 'undefined'">
+        <div class="location-box">
+          <div class="location">
+            Ciudad no encontrada
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </template>
@@ -48,7 +55,7 @@ export default {
   methods: {
     fetchWeather (e) {
       if (e.key == "Enter") {
-        fetch(`${this.url_base}weather?q=${this.query}&units=metric&lang=fr&APPID=${this.api_key}`)
+        fetch(`${this.url_base}weather?q=${this.query}&units=metric&lang=es&APPID=${this.api_key}`)
           .then(res => {
             return res.json()
           }).then(this.setResults)
@@ -56,7 +63,6 @@ export default {
     },
     setResults (results) {
       this.weather = results;
-      console.log(this.weather.weather[0].main)
     },
     dateBuilder () {
       let d = new Date()
